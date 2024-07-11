@@ -3,14 +3,6 @@ import { User } from './Components/User/User';
 import { UserProvider } from './UserContext';
 
 import './App.css';
-/**
- * @typedef {Object} User
- * @property {string} name
- * @property {number} age
- * @property {Object} address
- * @property {string} address.city
- * @property {string} address.street
- */
 
 /**
  * @namespace App
@@ -56,11 +48,6 @@ function App() {
   const handleClickNext = () => {
     setId((prevId) => prevId + 1);
   };
-
-  
-  
-
-
 
   /**
    * Handles the click event for the previous button.
