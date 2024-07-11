@@ -2,31 +2,25 @@
 
 ## Introduction
 
-TypeScript to nadzbiór JavaScriptu stworzony przez firmę Microsoft. Jego głównym celem jest dodanie statycznego typowania do JavaScriptu. Dzięki temu TypeScript pozwala na wykrywanie błędów w trakcie pisania kodu, zanim zostanie on uruchomiony.
-TypeScript jest kompilowany do JavaScriptu, co oznacza, że kod napisany w TypeScript można uruchomić w dowolnej przeglądarce internetowej, ale najpierw musi zostać przetworzony do JavaScriptu. TypeScript jest językiem open-source, co oznacza, że każdy może przyczynić się do jego rozwoju. Oprócz dodania statycznego typowania, TypeScript dodaje również nowe funkcje, które nie są dostępne w JavaScriptcie.
+TypeScript is a superset of JavaScript developed by Microsoft. Its primary goal is to add static typing to JavaScript. This enables TypeScript to detect errors during code writing before it is executed. TypeScript is compiled to JavaScript, which means that code written in TypeScript can be run in any web browser, but it must first be processed into JavaScript. TypeScript is an open-source language, which means that anyone can contribute to its development. Besides adding static typing, TypeScript also introduces new features that are not available in JavaScript.
 
-### Czy TypeScript jest potrzebny?
+### Is TypeScript Necessary?
 
-Według mnie - osoby głównie pracującej przy aplikacjach - jest on dużym ułatwieniem i usprawnieniem pracy. Oczywiście wymaga on pewnych nakładów w postaci dodatkowej nauki i pilnowania, żeby typować pełne obiekty.
-Przy poprawnym korzystaniu jest on dużą pomocą przy pracy na wielu plikach i zespołach. Zaawansowane elementy tego języka pozwalają na zmniejszenie ilości powtórzeń (tworzenie typu nadrzędnego, po czym tworzenie typów podrzędnych używając Pick) oraz na zwiększenie czytelności kodu (tworzenie typów generycznych). Jednakże wiele osób w community uważa, że TypeScript jest zbędny i niepotrzebnie komplikuje kod.
-Dodatkowy krok kompilacji (a co za tym idzie bardziej skomplikowany proces CI/CD), utrudniona praca przy tworzeniu bibliotek (wymagane jest dodatkowe narzędzie do generowania definicji typów) oraz konieczność nauki nowego języka to
-główne argumenty przeciwko TypeScriptowi. Niektórzy uważają to za tak wielki problem, że z dnia na dzień są w stanie wrócić do czystego JavaScriptu (przykład z roku temu [Svelte](https://github.com/sveltejs/svelte/pull/8569)).
+From my perspective - as someone primarily working on applications - it significantly eases and streamlines the workflow. Of course, it requires some investment in terms of additional learning and ensuring full object typing. When used correctly, it is a substantial aid in working across multiple files and teams. Advanced elements of this language allow for reducing repetition (creating a parent type and then creating subtypes using Pick) and increasing code readability (creating generic types). However, many in the community believe that TypeScript is unnecessary and complicates the code. The additional compilation step (and therefore a more complex CI/CD process), the difficulty in creating libraries (an additional tool is required to generate type definitions), and the necessity of learning a new language are the main arguments against TypeScript. Some consider it such a significant issue that they are willing to switch back to plain JavaScript (example from a year ago [Svelte](https://github.com/sveltejs/svelte/pull/8569)).
 
 ### JSDoc
 
-JSDoc to język znaczników stworzony do annotacji JavaScriptu. Za jego pomocą, używając specjalnej składni, możemy dodawać komentarze do naszego kodu, które będą wykorzystywane przez różne narzędzia do generowania dokumentacji.
-Współczesne IDE, jak np. (VSCode), potrafią bez żadnych dodatkowych pluginów czy wtyczek korzystać z tej składni, by podpowiadać nam typy zmiennych, funkcji czy metod. Dzięki temu możemy uzyskać podobne efekty jak w TypeScriptcie.
-Jednakże JSDoc nie jest tak rozbudowany jak TypeScript, nie pozwala na tworzenie typów generycznych, nie pozwala na tworzenie typów nadrzędnych i podrzędnych. Jest to jednakże dobry kompromis dla osób, które nie chcą korzystać z TypeScriptu.
+JSDoc is a markup language designed for annotating JavaScript. By using a special syntax, we can add comments to our code, which are used by various tools to generate documentation. Modern IDEs, such as (VSCode), can utilize this syntax without any additional plugins or extensions to suggest variable, function, and method types. This allows us to achieve similar effects as in TypeScript. However, JSDoc is not as extensive as TypeScript; it does not allow the creation of generic types or parent and child types. Nevertheless, it is a good compromise for those who do not want to use TypeScript.
 
-Personalnie nie korzystałem z JSDoc przed pisaniem tego artykułu, ale z otwartym umysłem podchodzę do tego narzędzia.
+Personally, I had not used JSDoc before writing this article, but I approached this tool with an open mind.
 
-### Przykłady
+### Examples
 
-Żeby trochę utrudnić, będę pisał przykłady używając Reacta, który czasem wymaga bardziej skomplikowanych typów.
+To add some complexity, I will be writing examples using React, which sometimes requires more complicated types.
 
-#### Zwykłe zmienne
+#### Simple Variables
 
-Żeby otypować zwykłą zmienną, używamy składni `@type {typ}`. Przykład:
+To type a simple variable, we use the `@type {type}` syntax. Example:
 
 ```javascript
 /**
@@ -35,21 +29,21 @@ Personalnie nie korzystałem z JSDoc przed pisaniem tego artykułu, ale z otwart
 const a = 1;
 ```
 
-ale często, patrząc na różne przykłady, można zapisać to w skróconej wersji:
+but often, looking at various examples, you can write it in a shortened version:
 
 ```javascript
 const a = /** @type {number} */ (1);
 ```
 
-Oczywiście, korzystając z TypeScriptu, możemy to zapisać w prostszy sposób:
+Of course, using TypeScript, we can write it in a simpler way:
 
 ```typescript
 const a: number = 1;
 ```
 
-#### Deklaracja typu
+#### Type Declaration
 
-Stwórzmy sobie typ User, który będzie posiadał kilka pól, w tym jedno zagnieżdżone:
+Let's create a User type that will have several fields, including a nested one:
 
 ```javascript
 /**
@@ -71,7 +65,7 @@ const test = /** @type {User} */ ({
 });
 ```
 
-W TypeScriptcie:
+In TypeScript:
 
 ```typescript
 type User = {
@@ -93,10 +87,10 @@ const test: User = {
 };
 ```
 
-Widzimy, że składnie w tym przypadku są dość podobne, ale w TypeScriptcie jest to bardziej czytelne.
-Oczywiście, korzystając z JSDoc oraz z TypeScriptu, możemy eksportować/importować typy.
-W TypeScriptcie poprzez dodanie `export` przed `type`, a następnie `import` w innym pliku.
-W JSDoc jest podobnie, ale nie dodajemy `export`, a `import` wygląda trochę inaczej:
+We see that the syntax in this case is quite similar, but in TypeScript it is more readable.
+Of course, using JSDoc and TypeScript, we can export/import types.
+In TypeScript by adding `export` before `type` and then `import` in another file.
+In JSDoc it is similar, but we do not add `export`, and `import` looks a bit different:
 
 ```javascript
 /**
@@ -104,32 +98,32 @@ W JSDoc jest podobnie, ale nie dodajemy `export`, a `import` wygląda trochę in
  */
 ```
 
-#### Typowanie hooków
+#### Typing Hooks
 
-Tak jak wspominałem, testowałem JSDoc w Reactcie, więc chciałem sprawdzić, jak to jest z najprostszym z hooków - `useState`.
+As I mentioned, I tested JSDoc in React, so I wanted to check how it works with the simplest hook - `useState`.
 
-W TypeScriptcie wystarczy zadeklarować typ zmiennej (Użyjemy sobie naszego typu User z przykładu wyżej):
+In TypeScript, you just need to declare the variable type (we will use our User type from the example above):
 
 ```typescript
 const [users, setUser] = useState<User[]>([]);
 ```
 
-W JSDoc:
+In JSDoc:
 
 ```javascript
 /**
  * @type {User[]}
  */
-const [users, setUsers] = useState([]); <---- ten zapis nie jest poprawny
+const [users, setUsers] = useState([]); <---- this notation is incorrect
 
-const [users, setUsers] = useState(/** @type {User[]} */([])); <---- ten zapis jest poprawny
+const [users, setUsers] = useState(/** @type {User[]} */([])); <---- this notation is correct
 ```
 
-Dlaczego pierwszy zapis nie jest poprawny? Ponieważ JSDoc ustawił typ `setUsers` też na `User[]`, a nie na `Dispatch<SetStateAction<User[]>>`. Dlatego musimy użyć drugiego zapisu.
+Why is the first notation incorrect? Because JSDoc set the type of `setUsers` to `User[]` as well, instead of `Dispatch<SetStateAction<User[]>>`. Therefore, we must use the second notation.
 
-#### Typowanie komponentu funkcyjnego
+#### Typing a Functional Component
 
-W Reactcie możemy używać komponentów funkcyjnych. W TypeScriptcie możemy zadeklarować typy propsów w taki sposób:
+In React, we can use functional components. In TypeScript, we can declare the types of props as follows:
 
 ```typescript
 interface UserProps {
@@ -140,7 +134,7 @@ interface UserProps {
 const User = ({ name, age }: UserProps) => {...};
 ```
 
-W JSDoc:
+In JSDoc:
 
 ```javascript
 /**
@@ -154,11 +148,8 @@ W JSDoc:
 const User = ({ name, age }) => {...};
 ```
 
-### Podsumowanie
+### Summary
 
-JSDoc może być alternatywą dla typowania, ale wymaga on większej ilości boilerplatu. Oczywiście, typowanie w postaci JSDoc to tylko połowa tego, co on daje - każdy `@typedef` czy `@property` możemy opisać dodatkowymi informacjami, a
-następnie wygenerować z tego dokumentację kodu. Dzięki czemu możemy za jednym zamachem zrobić dokumentację i sprawdzić, czy nasz kod jest poprawnie otypowany. Jednakże TypeScript jest bardziej rozbudowany i pozwala na bardziej zaawansowane
-typowanie. Szukając opinii i informacji na temat różnic między tymi dwoma narzędziami, znalazłem wiele opinii, że TypeScript jest dużo lepszy do korzystania w aplikacjach, ale JSDoc jest lepszy do tworzenia bibliotek.
+JSDoc can be an alternative for typing, but it requires more boilerplate code. Of course, typing in the form of JSDoc is only half of what it offers - each `@typedef` or `@property` can be described with additional information, and then documentation can be generated from it. This way, we can simultaneously create documentation and check if our code is correctly typed. However, TypeScript is more extensive and allows for more advanced typing. While researching opinions and information on the differences between these two tools, I found many opinions that TypeScript is much better for use in applications, but JSDoc is better for creating libraries.
 
-W dużej ścisłości, samo adnotowanie JSDoc'kiem daje nam tylko informacje o typach, ale w podstawowej konfiguracji VSCode nie podpowiada nam błędów w kodzie. Jakiś czas temu TypeScript dodał do swojej konfiguracji możliwość dodania
-sprawdzania plików js oraz korzystania z adnotacji JSDoc. Dzięki temu możemy korzystać z obu narzędzi jednocześnie [link](https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html).
+In essence, merely annotating with JSDoc gives us only information about types, but in the basic VSCode configuration, it does not suggest code errors. Some time ago, TypeScript added the ability to check js files and use JSDoc annotations in its configuration. This allows us to use both tools simultaneously [link](https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html).
