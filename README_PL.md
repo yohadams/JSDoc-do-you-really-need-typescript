@@ -1,6 +1,6 @@
-# JSDoc - do you really need TypeScript?
+# JSDoc - czy naprawde ppotrzebujesz TypeScriptu?
 
-## Introduction
+## Wstęp
 
 TypeScript to nadzbiór JavaScriptu stworzony przez firmę Microsoft. Jego głównym celem jest dodanie statycznego typowania do JavaScriptu. Dzięki temu TypeScript pozwala na wykrywanie błędów w trakcie pisania kodu, zanim zostanie on uruchomiony. TypeScript jest kompilowany do JavaScriptu, co oznacza, że kod napisany w TypeScript można uruchomić w dowolnej przeglądarce internetowej, ale najpierw musi zostać przetworzony do JavaScriptu. TypeScript jest językiem open-source, co oznacza, że każdy może przyczynić się do jego rozwoju. Oprócz dodania statycznego typowania, TypeScript wprowadza również nowe funkcje, które nie są dostępne w JavaScriptcie.
 
