@@ -1,4 +1,4 @@
-# JSDoc - czy naprawde ppotrzebujesz TypeScriptu?
+# JSDoc - czy naprawde potrzebujesz TypeScriptu?
 
 ## Wstęp
 
